@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback } from "react";
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 const fmt = (n) => n >= 1000000 ? (n/1000000).toFixed(1)+"M" : n >= 1000 ? (n/1000).toFixed(1)+"K" : String(n);
-const fmtSpend = (n) => "$"+fmt(n);
+const fmtSpend = (n) => "$"+fmt(n);h
 const rand = (a,b) => Math.floor(Math.random()*(b-a+1))+a;
 
 const COUNTRY_NAMES = {PK:"🇵🇰 Pakistan",US:"🇺🇸 USA",CA:"🇨🇦 Canada",MX:"🇲🇽 Mexico",UK:"🇬🇧 UK",GB:"🇬🇧 UK",DE:"🇩🇪 Germany",FR:"🇫🇷 France",ES:"🇪🇸 Spain",IT:"🇮🇹 Italy",NL:"🇳🇱 Netherlands",BE:"🇧🇪 Belgium",SE:"🇸🇪 Sweden",NO:"🇳🇴 Norway",DK:"🇩🇰 Denmark",PL:"🇵🇱 Poland",PT:"🇵🇹 Portugal",CH:"🇨🇭 Switzerland",AT:"🇦🇹 Austria",IE:"🇮🇪 Ireland",FI:"🇫🇮 Finland",AE:"🇦🇪 UAE",SA:"🇸🇦 Saudi Arabia",MA:"🇲🇦 Morocco",EG:"🇪🇬 Egypt",QA:"🇶🇦 Qatar",KW:"🇰🇼 Kuwait",TN:"🇹🇳 Tunisia",JO:"🇯🇴 Jordan",AU:"🇦🇺 Australia",NZ:"🇳🇿 New Zealand",SG:"🇸🇬 Singapore",MY:"🇲🇾 Malaysia",PH:"🇵🇭 Philippines",IN:"🇮🇳 India",JP:"🇯🇵 Japan",KR:"🇰🇷 S. Korea",TH:"🇹🇭 Thailand",ID:"🇮🇩 Indonesia",NG:"🇳🇬 Nigeria",ZA:"🇿🇦 S. Africa",KE:"🇰🇪 Kenya",GH:"🇬🇭 Ghana",SN:"🇸🇳 Senegal",BR:"🇧🇷 Brazil",AR:"🇦🇷 Argentina",CO:"🇨🇴 Colombia",CL:"🇨🇱 Chile"};
 const COUNTRIES = ["All","PK","US","CA","MX","GB","DE","FR","ES","IT","NL","BE","SE","NO","DK","PL","PT","CH","AT","IE","FI","AE","SA","MA","EG","QA","KW","TN","JO","AU","NZ","SG","MY","PH","IN","JP","KR","TH","ID","NG","ZA","KE","GH","SN","BR","AR","CO","CL"];
-// Meta API country codes
+// Meta API country codesh
 const META_COUNTRY_CODES = {PK:"PK",US:"US",CA:"CA",MX:"MX",GB:"GB",DE:"DE",FR:"FR",ES:"ES",IT:"IT",NL:"NL",BE:"BE",SE:"SE",NO:"NO",DK:"DK",PL:"PL",PT:"PT",CH:"CH",AT:"AT",IE:"IE",FI:"FI",AE:"AE",SA:"SA",MA:"MA",EG:"EG",QA:"QA",KW:"KW",TN:"TN",JO:"JO",AU:"AU",NZ:"NZ",SG:"SG",MY:"MY",PH:"PH",IN:"IN",JP:"JP",KR:"KR",TH:"TH",ID:"ID",NG:"NG",ZA:"ZA",KE:"KE",GH:"GH",SN:"SN",BR:"BR",AR:"AR",CO:"CO",CL:"CL"};
 const CATEGORIES = ["All","Ecommerce","Health","Beauty","Kitchen","Pets","Accessories","Kids","Home","Fitness","Fashion","Tech","Food","Travel","Finance","Education"];
 const PLATFORMS = ["all","Facebook","Instagram","Audience Network","Messenger"];
@@ -149,10 +149,12 @@ async function fetchMetaAds({ token, search, country, limit = 50, after = null }
   });
 
   if (search && search.trim()) params.set("search_terms", search.trim());
-  if (country && country !== "All") {
-    const code = META_COUNTRY_CODES[country] || country;
-    params.set("ad_reached_countries", `["${code}"]`);
-  }
+if (country && country !== "All") {
+      const code = META_COUNTRY_CODES[country] || country;
+      params.set("ad_reached_countries", `["${code}"]`);
+} else {
+      params.set("ad_reached_countries", '["ALL"]');
+}
   if (after) params.set("after", after);
 
   const url = `https://graph.facebook.com/v19.0/ads_archive?${params}`;

@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 const fmt = (n) => n >= 1000000 ? (n/1000000).toFixed(1)+"M" : n >= 1000 ? (n/1000).toFixed(1)+"K" : String(n);
-const fmtSpend = (n) => "$"+fmt(n);h
+const fmtSpend = (n) => "$"+fmt(n);
 const rand = (a,b) => Math.floor(Math.random()*(b-a+1))+a;
 
 const COUNTRY_NAMES = {PK:"🇵🇰 Pakistan",US:"🇺🇸 USA",CA:"🇨🇦 Canada",MX:"🇲🇽 Mexico",UK:"🇬🇧 UK",GB:"🇬🇧 UK",DE:"🇩🇪 Germany",FR:"🇫🇷 France",ES:"🇪🇸 Spain",IT:"🇮🇹 Italy",NL:"🇳🇱 Netherlands",BE:"🇧🇪 Belgium",SE:"🇸🇪 Sweden",NO:"🇳🇴 Norway",DK:"🇩🇰 Denmark",PL:"🇵🇱 Poland",PT:"🇵🇹 Portugal",CH:"🇨🇭 Switzerland",AT:"🇦🇹 Austria",IE:"🇮🇪 Ireland",FI:"🇫🇮 Finland",AE:"🇦🇪 UAE",SA:"🇸🇦 Saudi Arabia",MA:"🇲🇦 Morocco",EG:"🇪🇬 Egypt",QA:"🇶🇦 Qatar",KW:"🇰🇼 Kuwait",TN:"🇹🇳 Tunisia",JO:"🇯🇴 Jordan",AU:"🇦🇺 Australia",NZ:"🇳🇿 New Zealand",SG:"🇸🇬 Singapore",MY:"🇲🇾 Malaysia",PH:"🇵🇭 Philippines",IN:"🇮🇳 India",JP:"🇯🇵 Japan",KR:"🇰🇷 S. Korea",TH:"🇹🇭 Thailand",ID:"🇮🇩 Indonesia",NG:"🇳🇬 Nigeria",ZA:"🇿🇦 S. Africa",KE:"🇰🇪 Kenya",GH:"🇬🇭 Ghana",SN:"🇸🇳 Senegal",BR:"🇧🇷 Brazil",AR:"🇦🇷 Argentina",CO:"🇨🇴 Colombia",CL:"🇨🇱 Chile"};
